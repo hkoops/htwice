@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>My First Grid</title>
+ 
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+ 
+<style type="text/css">
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 75%;
+}
+</style>
+ 
+<script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
+<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script src="js/jquery.jqGrid.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+// Here we set the altRows option globally
+jQuery.extend(jQuery.jgrid.defaults, { altRows:true }, {height:800});
+</script>
+
+ 
+<script type="text/javascript">
+$(function () {
+   $("#student-grid-array").jqGrid({
+    datatype: "local",
+    colNames: ["Student ID", "Name", "Course", "Year"],
+    colModel: [
+                { name: "StudentID", index: "StudentID" },
+                { name: "Name", index: "Name" },
+                { name: "Course", index: "Course" },
+                { name: "Year", index: "Year", sorttype: "int" }
+            ],
+    multiselect: true,
+    shrinkToFit: false,
+	editable: true,
+    caption: "Student List - Loading via Array"
+});
+ 
+var students = [
+            { StudentID: "JC200300001", Name: "Jessica Cohen", Course: "Applied Arts and Sciences", Year: "1" },
+            { StudentID: "SF200800002", Name: "Shane Foster", Course: "Business Administration", Year: "2" },
+            { StudentID: "KK200800003", Name: "Kellan Kher", Course: "Social Sciences", Year: "4" },
+            { StudentID: "PS200100004", Name: "Patrick Shirazi", Course: "Education", Year: "1" },
+            { StudentID: "CB200400005", Name: "Constance Barry", Course: "Social Sciences", Year: "3" },
+            { StudentID: "DW200400006", Name: "Dustin Wallace", Course: "Philosophy", Year: "1" },
+            { StudentID: "AG200900007", Name: "Amal Goodman", Course: "Education", Year: "2" }
+        ];
+ 
+for (var x = 0; x <= students.length; x++) {
+    $("#student-grid-array").addRowData(x, students[x]);
+}
+
+}); 
+</script>
+ 
+</head>
+<body>
+   <table id="student-grid-array"></table>
+</body>
+</html>
